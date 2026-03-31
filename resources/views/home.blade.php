@@ -7,16 +7,14 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
       <meta name="format-detection" content="telephone=no" />
       <meta name="SKYPE_TOOLBAR" content ="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
-      <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+      <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
       <link href="https://fonts.googleapis.com/css?family=Lusitana:400,700" rel="stylesheet">
-      <!-- <link rel="stylesheet" type="text/css" href="assets/css/lvn-gov-cd-style-new.css"> -->
       <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&display=swap" rel="stylesheet">
       <!-- global css end -->
       <script type="text/javascript">
-         var BaseUrl = '<?php echo url('/'); ?>';
+         var BaseUrl = "{{ url('/') }}";
       </script>
    </head>
    <body>
@@ -29,7 +27,6 @@
       <header class="rs_blue">
          <div class="wrapper-full py-3">
             <div class="logo">
-               <!-- <a href=""><img src="<?php// echo base_url() ?>assets/img/lasvegasnevada-gov-logo.png"></a> -->
                <ul>
                   <li>
                      <a href="http://lasvegasnevada.gov">
@@ -54,7 +51,7 @@
                   <div class="nav-drop">
                      <ul>
                         <li><a href="https://communitydashboard.vegas/economicoverview">City of Las Vegas Economic Overview</a></li>
-                        <li><a href="https://communitydashboard.vegas/economic">Economic Update</a></li>
+                        <li><a href="https://communitydashboard.vegas/propertydata">Property Data Overview</a></li>
                         <li><a href="https://communitydashboard.vegas/workforce">Workforce Summary</a></li>
                         <li><a href="https://communitydashboard.vegas/urban">Redevelopment Agency Data Portal</a></li>
                         <li><a href="https://communitydashboard.vegas/business">Business Overview</a></li>
@@ -62,7 +59,6 @@
                         <li><a href="https://communitydashboard.vegas/jurisdictional">Jurisdictional Comparison</a></li>
                         <li><a href="https://communitydashboard.vegas/foreclosure">Foreclosure Analysis</a></li>
                         <li><a href="https://communitydashboard.vegas/schooltracker">School Tracker</a></li>
-                        <li><a href="https://communitydashboard.vegas/clv-medical">LV Medical District Employment Concentration</a></li>
                      </ul>
                   </div>
                </div>
@@ -96,7 +92,6 @@
                         </select>
                      </li>
                      <li><strong>Legend</strong></li>
-                     <!-- <li><span class="lightwhite-color">&nbsp</span><span id="indicator_legend" title="Monthly Employment">Monthly Employment</span></li> -->
                      <li><span class="yellow-color">&nbsp</span>Current Period</li>
                      <li><span class="blue-color">&nbsp</span>Cycle Peak</li>
                      <li><span class="red-color">&nbsp</span>Cycle Trough</li>
@@ -122,7 +117,6 @@
                         <li style="font-size:16px; font-weight:bold; margin-left:30px;" id="difference"></li>
                      </ul>
                      <div id="chart-sec" class="chart-sec" style="height: 350px; width: 100%;max-width: 870px;min-width: 870px;">
-                        <!-- <img src="<?php // echo base_url()  ?>assets/images/gra_ph.png"> -->
                      </div>
                   </div>
                </div>
@@ -230,18 +224,17 @@
                <ul>
                   <li><a href="https://communitydashboard.vegas/economicoverview">City of Las Vegas Economic Overview</a></li>
                   <li><a href="https://communitydashboard.vegas/neighborhood">Neighborhood Demographics</a></li>
-                  <li><a href="https://communitydashboard.vegas/economic">Economic Update</a></li>
+                  <li><a href="https://communitydashboard.vegas/propertydata">Property Data Overview</a></li>
                   <li><a href="https://communitydashboard.vegas/jurisdictional">Local & Regional Comparisons</a></li>
                   <li><a href="https://communitydashboard.vegas/workforce">Workforce Summary</a></li>
                   <li><a href="https://communitydashboard.vegas/foreclosure">Residential Foreclosure Analysis</a></li>
                   <li><a href="https://communitydashboard.vegas/urban">Redevelopment Agency Data Portal</a></li>
                   <li><a href="https://communitydashboard.vegas/schooltracker">School Performance Tracker</a></li>
                   <li><a href="https://communitydashboard.vegas/business">Business Overview</a></li>
-                  <li><a href="https://communitydashboard.vegas/clv-medical">Las Vegas Medical District Employment Concentration</a></li>
                </ul>
             </div>
             <div class="clr"></div>
-            <p class="copy">&copy; <?php echo date('Y'); ?>. All Rights Reserved. Powered by <img src="<?php echo url('/'); ?>assets/images/paw.svg"> <a href="http://myresearcher.com/" target="_blank">myResearcher.com</a></p>
+            <p class="copy">&copy; {{ now()->year }}. All Rights Reserved. Powered by <img src="{{ url('/assets/images/paw.svg') }}"> <a href="http://myresearcher.com/" target="_blank">myResearcher.com</a></p>
             <div class="clr"></div>
          </div>
       </footer>
@@ -264,18 +257,18 @@ echo <<<'HTML'
    <td>${current_period}</td>
    <td>${current_value}</td>
    <td>${current_peak_per}</td>
-   <td>{{if change_from_peak == ''}}<span>At Peak</span>{{else}}${change_from_peak}{{/if}}</td>
+   <td>{{if (change_from_peak == '') }}<span class="peak_data_img_sec">At Peak</span>{{else}}${change_from_peak}{{/if}}</td>
    <td>${change_from_peak_per}</td>
-   <td>{{if change_from_trough == ''}}<span>At trough</span>{{else}}${change_from_trough}{{/if}}</td>
+   <td>{{if (change_from_trough == '') }}<span class="atth_data_img_sec">At trough</span>{{else}}${change_from_trough}{{/if}}</td>
    <td>${change_from_trough_per}</td>
 </tr>
 HTML;
 ?>
 </script> 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="/assets/js/amcharts.js"></script>
-      <script src="/assets/js/serial.js"></script> 
-      <script src="/assets/js/jquery.tmpl.min.js"></script>
-      <script src="/assets/js/portal.js?<?php echo time(); ?>"></script>
+      <script src="{{ asset('assets/js/amcharts.js') }}"></script>
+      <script src="{{ asset('assets/js/serial.js') }}"></script> 
+      <script src="{{ asset('assets/js/jquery.tmpl.min.js') }}"></script>
+      <script src="{{ asset('assets/js/portal.js') }}?<?php echo time(); ?>"></script>
    </body>
 </html>
