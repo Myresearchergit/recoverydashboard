@@ -10,7 +10,7 @@ class Home extends Controller
 
     public function __construct()
     {
-        $this->siteUrl = 'https://myresearcher.com/dataportal/recovery';
+        $this->siteUrl = 'https://dpdata.myresearcher.com/api/recovery';
     }
 
     public function index()
@@ -29,6 +29,11 @@ class Home extends Controller
 
             $postDatas = http_build_query($postdata);
 
+            $headers = array(
+			'Accept: application/json',
+			'Authorization: Bearer 3XT49nRtgertygetHYDFDUYuN2zPSwMEAOq9X34jckRKSbqLWEwKAFtcDBOB'
+			);
+
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $siteUrl);
             curl_setopt($ch, CURLOPT_ENCODING, '');
@@ -36,6 +41,7 @@ class Home extends Controller
             curl_setopt($ch, CURLOPT_USERPWD, 'portaluser:nTryIt!');
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postDatas);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120);
             curl_setopt($ch, CURLOPT_TIMEOUT, 120);
